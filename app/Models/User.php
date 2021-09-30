@@ -38,6 +38,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login_at',
+        'last_login_ip',
     ];
 
     /**
@@ -48,6 +50,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'last_login_at',
+        'last_login_ip',
     ];
 
     /**
@@ -58,4 +62,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'profile_photo_url'
+    ];
+
+    /**
+     * Get the user's first name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getProfilePhotoUrlAttribute($value)
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=15803D&background=DCFCE7&size=600';
+    }
 }
