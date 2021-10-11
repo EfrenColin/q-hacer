@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </header>
-            <aside  class=" hidden h-full fixed mt-8 w-80 overflow-y-auto bg-gray-50 md:block flex-shrink-0">
+            <aside  class=" hidden h-full fixed mt-8 w-72 overflow-y-auto bg-gray-50 md:block flex-shrink-0">
                 <div class="py-4 text-gray-500 dark:text-gray-400">
                     <div class="flex w-full max-w-xs px-4">
                         <ul class="flex flex-col w-full space-y-2 mt-5">
