@@ -214,9 +214,10 @@
                         </svg>
                     </button>
                     <div class="flex items-center justify-center space-x-2">
-                         <div class="relative">
+                        <Link :href="route('dashboard')"  :class="[ $page.component.startsWith('Dashboard') ? 'bg-green-300' :'']"
+                              class="p-1 text-green-400 transition-colors duration-200 rounded hover:text-green-600 hover:bg-green-400 focus:outline-none focus:bg-green-300 focus:ring-green-800">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        </div>
+                        </Link>
                     </div>
 
                     <div class="flex items-center justify-center space-x-2">
@@ -270,10 +271,30 @@
                                                 </svg>
                                             </div>
                                             <div class="pl-3">
-                                                <p class="text-sm font-medium text-gray-800 leading-none">Add members</p>
-                                                <p class="text-xs text-gray-500">Add/manage users &amp; teams</p>
+                                                <p class="text-sm font-medium text-gray-800 leading-none">Invitar miembros</p>
+                                                <p class="text-xs text-gray-500">Agrega/administra invitaciones y usuarios invitados</p>
                                             </div>
                                         </a>
+
+                                        <Link :href="route('settings.users.personal')" class="px-4 py-2 hover:bg-gray-100 flex">
+                                            <div class="text-gray-800">
+                                                <svg
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="1"
+                                                    viewBox="0 0 24 24"
+                                                    class="w-5 h-5"
+                                                >
+                                                    <path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <div class="pl-3">
+                                                <p class="text-sm font-medium text-gray-800 leading-none">Configuraciones personales</p>
+                                                <p class="text-xs text-gray-500">correo, perfil, notificaciones</p>
+                                            </div>
+                                        </Link>
                                         <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
                                             <div class="text-gray-800">
                                                 <svg
@@ -290,30 +311,11 @@
                                                 </svg>
                                             </div>
                                             <div class="pl-3">
-                                                <p class="text-sm font-medium text-gray-800 leading-none">Account settings</p>
-                                                <p class="text-xs text-gray-500">Usage, billing, branding, teams</p>
+                                                <p class="text-sm font-medium text-gray-800 leading-none">Configuraciones de cuenta</p>
+                                                <p class="text-xs text-gray-500">Uso,equipos</p>
                                             </div>
                                         </a>
-                                        <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
-                                            <div class="text-gray-800">
-                                                <svg
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="1"
-                                                    viewBox="0 0 24 24"
-                                                    class="w-5 h-5"
-                                                >
-                                                    <path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="pl-3">
-                                                <p class="text-sm font-medium text-gray-800 leading-none">Personal settings</p>
-                                                <p class="text-xs text-gray-500">Email, profile, notifications</p>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
+                                        <!--<a href="#" class="px-4 py-2 hover:bg-gray-100 flex">
                                             <div class="text-green-600">
                                                 <svg
                                                     fill="none"
@@ -333,7 +335,7 @@
                                                 </p>
                                                 <p class="text-xs text-gray-500">Google, slack, mail</p>
                                             </div>
-                                        </a>
+                                        </a> -->
                                     </div>
                                     <div>
                                         <a href="#" class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
@@ -353,14 +355,14 @@
                     </div>
                 </div>
             </header>
-            <aside  class=" hidden h-full fixed mt-8 w-72 overflow-y-auto bg-gray-50 md:block flex-shrink-0">
+            <aside   v-if="!$page.component.startsWith('User/Setting')"  class=" hidden h-full fixed mt-8 w-64 overflow-y-auto bg-gray-50 md:block flex-shrink-0">
                 <div class="py-4 text-gray-500 dark:text-gray-400">
                     <div class="flex w-full max-w-xs px-4">
                         <ul class="flex flex-col w-full space-y-2 mt-5">
                             <li class="my-px flex justify-between items-center">
                                <div>
                                    <div class="mt-1 relative">
-                                       <button type="button" class="relative w-72 bg-transparent border border-gray-300 rounded-md  pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                                       <button type="button" class="relative w-56 bg-transparent border border-gray-300 rounded-md  pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
                                           <span class="flex items-center">
                                             <span class="block truncate">
                                               Espacio de trabajo
@@ -378,7 +380,6 @@
                             </li>
                             <li class="my-px flex justify-between items-center">
                                 <span class="flex font-medium text-sm text-gray-400 px-2 uppercase">Menu</span>
-
                             </li>
                             <li class="my-px">
                                 <a class="flex flex-row items-center px-2 py-2 rounded-lg  hover:text-green-600 hover:bg-gray-100">
@@ -412,7 +413,6 @@
                                     <span class="ml-3 text-sm">Proximo</span>
                                 </a>
                             </li>
-
                             <li class="my-px">
                                 <a href="#" @click="show = !show"
 
@@ -463,12 +463,11 @@
                             <li class="my-px">
                                 <span class="flex font-medium text-sm text-gray-400 px-2 uppercase">Compartidos conmigo</span>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </aside>
-            <main class="h-full  overflow-y-auto ml-0 md:ml-80">
+            <main class="h-full  overflow-y-auto" :class="[ $page.component.startsWith('User/Setting') ? '' :'ml-0 md:ml-64']">
                 <slot></slot>
 
             </main>

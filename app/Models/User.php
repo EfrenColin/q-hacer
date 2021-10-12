@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasWorkspace;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,
+        HasWorkspace,
+        HasFactory,
+        Notifiable;
 
     CONST ACTIVE = 'ACTIVE';
     CONST SUSPENDED = 'SUSPENDED';
@@ -37,9 +41,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'bio',
         'password',
         'last_login_at',
         'last_login_ip',
+        'country',
+        'gender',
+        'phone',
+        'current_workspace_id',
     ];
 
     /**
@@ -82,4 +91,5 @@ class User extends Authenticatable
     {
         return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=15803D&background=DCFCE7&size=600';
     }
+
 }

@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Application\HomeController;
+use App\Http\Controllers\Application\UserController;
+use App\Http\Controllers\Application\WorkspaceController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,17 +16,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::get('/', WelcomeController::class)->name('home');
+
+Route::middleware(['auth:sanctum','verified'])->group(function () {
+
+    Route::middleware('setup')->group(function () {
+        Route::get('/inicio', HomeController::class)->name('dashboard');
+    });
+    Route::post('/espacios-de-trabajo', [WorkspaceController::class,'store'])->name('workspaces.store');
+
+    Route::prefix('configuraciones/personales')->name('settings.')->group(function () {
+        Route::get('/perfil', [UserController::class,'profile'])->name('users.personal');
+        Route::get('/cuenta', [UserController::class,'account'])->name('users.profile');
+    });
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

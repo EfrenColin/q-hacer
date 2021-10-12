@@ -13,23 +13,19 @@
                     <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                     <ApplicationInputError :message="form.errors.name" class="ml-2" />
                 </div>
-
                 <div>
                     <BreezeLabel for="email" value="Correo electrónico" />
                     <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
                     <ApplicationInputError :message="form.errors.email" class="ml-2" />
                 </div>
-
                 <div>
                     <BreezeLabel for="password" value="Contraseña" />
                     <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
                 </div>
-
                 <div>
                     <BreezeLabel for="password_confirmation" value="Confirmar contraseña" />
                     <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                 </div>
-
                 <button @click="submit"  :class="{ 'opacity-25': form.processing }" :disabled="form.processing"  class="relative flex items-center justify-center w-full px-2 py-2 text-lg font-medium text-white rounded-xl group">
                     <span class="w-full h-full absolute inset-0 transform translate-y-1.5 translate-x-1.5 group-hover:translate-y-0 group-hover:translate-x-0 transition-all ease-out duration-200 rounded-xl bg-green-500"></span>
                     <span class="absolute inset-0 w-full h-full border-2 border-gray-900 rounded-xl"></span>
@@ -39,7 +35,7 @@
             </form>
             <div class="flex justify-center">
                 <p class="text-center text-md font-light mt-10">¿Ya te registraste?
-                    <Link :href="route('login')" class="font-light text-md text-indigo-600">Accede</Link>
+                    <Link :href="route('login')" class="font-light text-md text-indigo-600">Acceder</Link>
                 </p>
             </div>
         </div>
