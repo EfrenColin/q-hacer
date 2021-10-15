@@ -9,11 +9,11 @@
 
     <div class="relative flex flex-col justify-between p-8 lg:p-6 xl:p-8 rounded-2xl">
 
-        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-green-200 rounded-2xl"></div>
+        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-gray-200 rounded-2xl"></div>
         <div class="absolute inset-0 w-full h-full border-2 border-gray-900 rounded-2xl"></div>
         <div class="relative">
 
-            <form @submit.prevent="submit" class="space-y-4">
+            <form @submit.prevent="submit" class="space-y-3">
                 <div>
                     <BreezeLabel for="email" value="Email" />
                     <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
@@ -27,7 +27,7 @@
                 <div class="block">
                     <label class="flex items-center">
                         <BreezeCheckbox name="remember" v-model:checked="form.remember" />
-                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                        <span class="ml-2 text-sm text-gray-600">Recuérdame</span>
                     </label>
                 </div>
 

@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
 
     Route::prefix('configuraciones/personales')->name('settings.')->group(function () {
         Route::get('/perfil', [UserController::class,'profile'])->name('users.personal');
+        Route::post('/perfil', [UserController::class,'updateProfile'])->name('users.personal.update');
         Route::get('/cuenta', [UserController::class,'account'])->name('users.profile');
     });
 });

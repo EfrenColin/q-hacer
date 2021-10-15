@@ -3,11 +3,11 @@
 
     <div class="relative flex flex-col justify-between p-8 lg:p-6 xl:p-8 rounded-2xl">
 
-        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-green-200 rounded-2xl"></div>
+        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-gray-200 rounded-2xl"></div>
         <div class="absolute inset-0 w-full h-full border-2 border-gray-900 rounded-2xl"></div>
         <div class="relative">
 
-            <form @submit.prevent="submit" class="space-y-4">
+            <form @submit.prevent="submit" class="space-y-3">
                 <div>
                     <BreezeLabel for="name" value="Nombre" />
                     <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />

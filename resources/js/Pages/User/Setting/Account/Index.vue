@@ -30,7 +30,7 @@
                                                 </div>
                                                 <div class="col-span-4 sm:col-span-2">
                                                     <ApplicationLabel for="email" value="Correo electrónico" />
-                                                    <ApplicationInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
+                                                    <ApplicationInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" :readonly="true" />
                                                     <ApplicationInputError :message="form.errors.email" class="ml-2" />
                                                 </div>
                                                 <div class="col-span-4 sm:col-span-2">
@@ -39,17 +39,15 @@
                                                     <ApplicationLabel for="phone" value="Número telefónico" />
                                                     <div>
                                                         <div class="mt-1 relative rounded-md shadow-sm">
-                                                            <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-24  sm:text-sm border-gray-300 rounded-md">
+                                                            <input type="text" v-maska="'### ### ####'"  class="pl-36  focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 border border-gray-300 placeholder-gray-500  rounded-xl focus:outline-none px-3 py-2 mt-1 text-sm block w-full transition duration-500 ease-in-out">
                                                             <div class="absolute inset-y-0 left-0 flex items-center">
-                                                                <select id="currency" name="currency" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pr-10 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
-                                                                    <option>USD</option>
-                                                                    <option>CAD</option>
-                                                                    <option>EUR</option>
+                                                                <select id="currency" name="currency" class="h-full py-0 pr-10 border-transparent bg-transparent focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50  placeholder-gray-500  rounded-xl focus:outline-none text-sm block w-full transition duration-500 ease-in-out">
+                                                                    <option :value="null">Seleccionar</option>
+                                                                    <option :value="country.code" v-for="country in countries" :key="country.code">{{country.code}} (+{{country.code_phone}})</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <ApplicationInputError :message="form.errors.name" class="ml-2" />
                                                 </div>
                                             </div>
@@ -80,7 +78,7 @@ import ApplicationLabel from "@/Components/Label";
 import ApplicationMenuSetting from "@/Components/MenuSetting";
 export default {
     name: "Index",
-    props:['user'],
+    props:['user','countries'],
     components: {
         ApplicationAuthenticatedLayout,
         ApplicationInput,

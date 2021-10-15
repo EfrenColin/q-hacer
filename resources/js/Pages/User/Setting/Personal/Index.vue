@@ -17,7 +17,7 @@
                     <div>
                         <div class="md:grid md:grid-cols-3 md:gap-4">
                             <div class="md:col-span-3">
-                                <form action="#" method="POST">
+                                <form @submit.prevent="submit">
                                     <div class="sm:overflow-hidden">
                                         <div class="space-y-6 p-1">
                                             <div class="grid grid-cols-4 gap-4">
@@ -57,12 +57,15 @@
                                                 </div>
                                                 <div class="col-span-4 sm:col-span-4">
                                                     <ApplicationLabel value="Bio" />
-                                                    <textarea id="bio" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
+                                                    <ApplicationTextArea v-model="form.bio"></ApplicationTextArea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-5 px-4 py-3 border-t border-gray-300 text-right sm:px-6">
-                                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        <div class="mt-5 px-2 py-3 border-t border-gray-300 flex items-center justify-end">
+                                            <ApplicationActionMessage :on="form.recentlySuccessful" class="mr-3">
+                                                <span class="text-green-500" v-text="$page.props.flash.success"></span>
+                                            </ApplicationActionMessage>
+                                            <button type="submit" :class="{ 'opacity-25 cursor-not-allowed': form.processing || !form.isDirty}" :disabled="form.processing || !form.isDirty"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-transparent">
                                                 Actualizar
                                             </button>
                                         </div>
@@ -73,7 +76,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </ApplicationAuthenticatedLayout>
 </template>
@@ -81,7 +83,9 @@
 <script>
 import ApplicationAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import {Head} from "@inertiajs/inertia-vue3";
+import ApplicationActionMessage from "@/Components/ActionMessage";
 import ApplicationInput from "@/Components/Input";
+import ApplicationTextArea from "@/Components/TextArea";
 import ApplicationInputError from "@/Components/InputError";
 import ApplicationLabel from "@/Components/Label";
 import ApplicationMenuSetting from "@/Components/MenuSetting";
@@ -89,11 +93,13 @@ export default {
     name: "Index",
     props:['user','countries'],
     components: {
+        ApplicationActionMessage,
         ApplicationAuthenticatedLayout,
         ApplicationInput,
         ApplicationInputError ,
         ApplicationLabel,
         ApplicationMenuSetting,
+        ApplicationTextArea,
         Head,
     },
 
@@ -102,12 +108,17 @@ export default {
             form: this.$inertia.form({
                 bio: this.user.bio,
                 name: this.user.name,
-                email: this.user.email,
                 gender: this.user.gender,
                 country: this.user.country,
             })
         }
     },
+
+    methods:{
+        submit(){
+            this.form.post(this.route('settings.users.personal.update'))
+        }
+    }
 }
 </script>
 

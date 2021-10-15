@@ -25,5 +25,8 @@
         "tailwindcss": "^2.1.2",
         "vue": "^3.2.20",
         "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "maska": "^1.4.6"
     }
 }
