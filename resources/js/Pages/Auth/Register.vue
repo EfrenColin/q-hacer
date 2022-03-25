@@ -3,7 +3,7 @@
 
     <div class="relative flex flex-col justify-between p-8 lg:p-6 xl:p-8 rounded-2xl">
 
-        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-gray-200 rounded-2xl"></div>
+        <div class="absolute inset-0 w-full h-full transform translate-x-2 translate-y-2 bg-gray-100 rounded-2xl"></div>
         <div class="absolute inset-0 w-full h-full border-2 border-gray-900 rounded-2xl"></div>
         <div class="relative">
 

@@ -1,7 +1,7 @@
 <template>
     <Head title="Bienvenido" />
 
-    <div class="max-w-6xl mx-auto  font-mono " id="bg">
+    <div class="max-w-6xl mx-auto font-mono" id="bg">
 
         <main class="bg-white">
             <header class="text-gray-600 body-font">
